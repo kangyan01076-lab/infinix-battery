@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinix Battery Information</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 自定义表格边框颜色以精确匹配截图 */
+        .table-border, .table-border th, .table-border td {
+            border: 1px solid #000;
+        }
+        /* 隐藏元素的类 */
+        .hidden-level {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-white text-black font-sans antialiased">
+
+    <!-- 全局状态栏提示 (仅用于演示引导，非网页本身内容) -->
+    <div class="bg-blue-100 text-blue-800 px-4 py-2 text-xs border-b border-blue-200 flex justify-between items-center fixed top-0 w-full z-50">
+        <span>当前视图：<strong id="current-view-label">第一级：全球官网首页</strong></span>
+        <button onclick="switchLevel(1)" class="text-blue-600 hover:underline font-bold">返回首页 (Level 1)</button>
+    </div>
+
+    <div class="pt-10"> <!-- 留出顶部状态栏的空间 -->
+        
+        <!-- ========================================== -->
+        <!-- 第 1 级：全球官网首页 (严格匹配图1) -->
+        <!-- ========================================== -->
+        <div id="level-1" class="block">
+            <!-- 仿制顶部导航栏 -->
+            <header class="flex justify-between items-center px-8 py-4 border-b border-gray-100">
+                <div class="text-3xl font-black italic tracking-tighter">Infinix</div>
+                <nav class="hidden lg:flex space-x-6 text-sm font-semibold">
+                    <a href="#" class="hover:text-green-500">Smartphones</a>
+                    <a href="#" class="hover:text-green-500">AI</a>
+                    <a href="#" class="hover:text-green-500">Accessories</a>
+                    <a href="#" class="hover:text-green-500">Laptops</a>
+                    <a href="#" class="hover:text-green-500">TV</a>
+                    <a href="#" class="hover:text-green-500">Tablet</a>
+                    <a href="#" class="hover:text-green-500">XOS</a>
+                    <a href="#" class="hover:text-green-500">News</a>
+                    <a href="#" class="hover:text-green-500">Support</a>
+                </nav>
+                <div class="flex space-x-4">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+            </header>
+
+            <!-- 仿制中间海报区 -->
+            <div class="px-8 py-6 grid grid-cols-2 gap-6">
+                <div class="bg-gray-800 text-white rounded-lg p-8 h-40 flex flex-col justify-center relative overflow-hidden">
+                    <img src="https://placehold.co/600x200/222/222" class="absolute inset-0 w-full h-full object-cover opacity-50" alt="bg">
+                    <div class="relative z-10">
+                        <p class="text-xs font-bold uppercase tracking-widest mb-1">SERVICE LETTER</p>
+                        <h2 class="text-3xl font-bold">Your Personal Helpdesk</h2>
+                    </div>
+                </div>
+                <div class="bg-gray-900 text-white rounded-lg p-8 h-40 flex flex-col justify-center">
+                    <p class="text-xs font-bold uppercase tracking-widest mb-1">FAQS</p>
+                    <h2 class="text-3xl font-bold">Product Support</h2>
+                </div>
+            </div>
+
+            <!-- 空白占位，模拟网页高度 -->
+            <div class="h-32"></div>
+
+            <!-- 重点：仿制 Footer (严格按照截图黑底绿线还原) -->
+            <footer class="bg-black text-white pt-16 pb-8 px-10">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
+                    <!-- Column 1 -->
+                    <div class="space-y-4">
+                        <div class="text-3xl font-black italic tracking-tighter">Infinix</div>
+                        <div class="flex space-x-4 text-xl font-bold">
+                            <span>X</span>
+                            <span>f</span>
+                            <span>◎</span>
+                            <span>▶</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Column 2 -->
+                    <div>
+                        <h4 class="font-bold mb-4 uppercase tracking-wider text-sm">ABOUT US</h4>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li>Our Story</li>
+                            <li>Contact Us</li>
+                            <li>Join Us</li>
+                            <li>EU Data Act</li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3 -->
+                    <div>
+                        <h4 class="font-bold mb-4 uppercase tracking-wider text-sm">PRODUCTS</h4>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li>Smartphones</li>
+                            <li>AI</li>
+                            <li>Accessories</li>
+                            <li>Laptops</li>
+                            <li>TV</li>
+                            <li>Tablet</li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 4 (核心红框区域) -->
+                    <div>
+                        <h4 class="font-bold mb-4 uppercase tracking-wider text-sm">CARE</h4>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li>Product Support</li>
+                            <li>Repair Center</li>
+                            <li>Limited Warranty</li>
+                            <li>Recycling Label</li>
+                            <!-- 红框包裹的 battery information -->
+                            <li class="pt-2">
+                                <button onclick="switchLevel(2)" class="border-2 border-red-500 rounded p-1 text-gray-400 hover:text-white hover:bg-red-500/10 transition flex items-center relative group cursor-pointer">
+                                    <span>battery information</span>
+                                    <span class="absolute -right-8 top-1 text-red-500 text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity">←</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 5 -->
+                    <div>
+                        <h4 class="font-bold mb-4 uppercase tracking-wider text-sm">SERVICE</h4>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li>Find a Store</li>
+                            <li>XClub</li>
+                            <li>XPark</li>
+                            <li>XOS</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Footer 底部绿线及版权 -->
+                <div class="border-t-2 border-green-500 pt-6 flex flex-col md:flex-row justify-between text-xs text-gray-500">
+                    <div>Infinix &copy; 2026 <span class="font-bold text-white">All rights reserved</span></div>
+                    <div class="font-bold text-white">Privacy Policy</div>
+                    <div class="font-bold text-white">Terms of use</div>
+                    <div>Location: Global(EN)</div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 第 2 级：品牌/型号列表页 (严格匹配图2) -->
+        <!-- ========================================== -->
+        <div id="level-2" class="hidden-level p-10 min-h-screen">
+            <!-- 极简设计，仅显示型号文字 -->
+            <button onclick="switchLevel(3)" class="text-lg font-sans text-black hover:text-blue-600 hover:underline cursor-pointer">
+                BL_58JT
+            </button>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 第 3 级：电池页详情 (严格匹配图3和图4) -->
+        <!-- ========================================== -->
+        <div id="level-3" class="hidden-level p-10 max-w-5xl mx-auto font-sans text-[15px] leading-relaxed">
+            
+            <!-- 匹配图3：SN 规则说明 -->
+            <div class="mb-10 whitespace-pre-wrap font-sans">规则说明如下：
+2025/10/31:为电池的生产日期;
+1-2位:物料类别:05-聚合物;
+3-7位:客户编码4-8位:8码,25002909---取02909;
+8-9位:供应商代码:10—欣旺达代码;
+10位:日期"年":取当年最后一位数字(例:5-2025年)
+11位:日期"月":1-January, 2-February,3-March,4-April,5-
+May,6-June,7-Jul
+8-August, 9-September, A-October, B-November, C-
+December
+12-13位:日期"日":01-31;
+14-19位:流水码:6位十进制流水码。
+
+二维码扫描显示为:0502909105A3100001</div>
+
+            <!-- 匹配图4：23 项数据大表格 -->
+            <table class="table-auto w-full text-left table-border border-collapse text-[14px]">
+                <thead>
+                    <tr class="bg-[#d9e2f3]">
+                        <th class="p-2 w-16 text-center font-normal">序号</th>
+                        <th class="p-2 w-48 font-normal">数据属性</th>
+                        <th class="p-2 font-normal">信息内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="p-2 text-center">1</td>
+                        <td class="p-2">电池唯一编码</td>
+                        <td class="p-2">" 0502907105A31000001 " 参考电池本体</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">2</td>
+                        <td class="p-2">电池型号编码</td>
+                        <td class="p-2">BL-58JT</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">3</td>
+                        <td class="p-2">制造商</td>
+                        <td class="p-2">Sunwoda Electronic CO.,LTD.</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">4</td>
+                        <td class="p-2">商标</td>
+                        <td class="p-2">Infinix</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">5</td>
+                        <td class="p-2">联系地址</td>
+                        <td class="p-2">No.2, Yihe Road, Shilong Community, Shiyan Street, Baoan<br>District, Shenzhen City</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">6</td>
+                        <td class="p-2">制造地点</td>
+                        <td class="p-2">North of Floor 1. Floor 3 and Floor 4 of Building 3: Floor 3<br>and South of Floor 4 of building 4, No. 111 Yanzhou Rd., Lanjiang<br>St., Lanxi County, Jinhua<br>City, Zheiiang Province, P.R. China</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">7</td>
+                        <td class="p-2">生产时间</td>
+                        <td class="p-2">“202605” 参考电池本体</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">8</td>
+                        <td class="p-2">类别</td>
+                        <td class="p-2">Lithium ion LCO: “Li-ion LCO”</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">9</td>
+                        <td class="p-2">重量</td>
+                        <td class="p-2">73.7±1.5g</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">10</td>
+                        <td class="p-2">分类收集标识</td>
+                        <td class="p-2"></td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">11</td>
+                        <td class="p-2">灭火剂</td>
+                        <td class="p-2">Dry powder fire extinguishing or carbon dioxide fire extinguishing.<br>water base extinguisher</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">12</td>
+                        <td class="p-2">标识释义</td>
+                        <td class="p-2">欧盟CE法规</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">13</td>
+                        <td class="p-2">合格性申明</td>
+                        <td class="p-2"></td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">14</td>
+                        <td class="p-2">尽职调查报告</td>
+                        <td class="p-2">(客户)</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">15</td>
+                        <td class="p-2">化学体系</td>
+                        <td class="p-2">Hazardous substance: PS,PVDF,Nickel and its compounds</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">16</td>
+                        <td class="p-2">关键原材料</td>
+                        <td class="p-2">A、LiCoO2、(CH2-CF2)n、(C8H8C4H6)x、Cu、C、LiPF6、PS</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">17</td>
+                        <td class="p-2">有害物质</td>
+                        <td class="p-2">Critical raw materials list:Graphite,Cobalt, Lithium, Nickel and its<br>compounds</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">18</td>
+                        <td class="p-2">物质对环境、<br>人类健康和安<br>全的影响</td>
+                        <td class="p-2">(客户)</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">19</td>
+                        <td class="p-2">拆解手册</td>
+                        <td class="p-2">(客户)</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">20</td>
+                        <td class="p-2">终端用户电池<br>处理指南</td>
+                        <td class="p-2">(客户)</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">21</td>
+                        <td class="p-2">终端用户电池<br>分类指南</td>
+                        <td class="p-2">(客户)</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">22</td>
+                        <td class="p-2">关于分类收集<br>和回收的信息</td>
+                        <td class="p-2">(客户)</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-center">23</td>
+                        <td class="p-2">额定容量</td>
+                        <td class="p-2">5800mAh</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+        function switchLevel(level) {
+            // 隐藏所有层级
+            document.getElementById('level-1').style.display = 'none';
+            document.getElementById('level-2').style.display = 'none';
+            document.getElementById('level-3').style.display = 'none';
+
+            // 显示目标层级并更新顶部提示文字
+            const labelElement = document.getElementById('current-view-label');
+            if (level === 1) {
+                document.getElementById('level-1').style.display = 'block';
+                labelElement.innerText = '第一级：全球官网首页';
+                window.scrollTo(0, document.body.scrollHeight); // 滚动到底部以便看到红框入口
+            } else if (level === 2) {
+                document.getElementById('level-2').style.display = 'block';
+                labelElement.innerText = '第二级：品牌/型号列表页';
+                window.scrollTo(0, 0);
+            } else if (level === 3) {
+                document.getElementById('level-3').style.display = 'block';
+                labelElement.innerText = '第三级：电池页详情 (扫描二维码直达)';
+                window.scrollTo(0, 0);
+            }
+        }
+        
+        // 初始状态下直接将网页滚动到底部，方便您直接看到 Footer 里的入口
+        window.onload = function() {
+            window.scrollTo(0, document.body.scrollHeight);
+        };
+    </script>
+</body>
+</html>
